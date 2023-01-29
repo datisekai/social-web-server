@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 const config = {
   USER_MYSQL: process.env.USER_MYSQL,
   PASS_MYSQL: process.env.PASS_MYSQL,

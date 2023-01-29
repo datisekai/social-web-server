@@ -1,0 +1,65 @@
+POST http://localhost:5151/api/room
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc0Nzk2Nzg2LCJleHAiOjE2NzQ4Mzk5ODZ9.RFRt3ZXgB6kri_xFXexa3PYfJKWlaRaZ8BtOAuDkico
+
+{
+    "name":"Phong 1",
+    "users":[
+        1,2
+    ]
+}
+
+###
+POST http://localhost:5151/api/user/login
+Content-Type: application/json
+
+{
+    "phone":"0886249022",
+    "password":"bedatdz"
+}
+
+###
+POST http://localhost:5151/api/user/register
+Content-Type: application/json
+
+{
+    "phone":"0886249021",
+    "password":"bedatdz",
+    "name":"An Nguyen"
+}
+
+###
+GET http://localhost:5151/api/room/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc0OTU4ODI2LCJleHAiOjE2NzUwMDIwMjZ9.gMccRBgxuKRuIRZ7ethViv46u4Ry9i0YQQS3Iey5pbk
+
+###
+POST http://localhost:5151/api/room
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc0OTgyNjcyLCJleHAiOjE2NzUwMjU4NzJ9.KVU9VyGQEw2v3EFWEgHZGqb3qs_7wsToYZ-cmNwu0gU
+
+{
+    "receiveId":2
+}
+
+###
+POST http://localhost:5151/api/message
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc0OTgyNjcyLCJleHAiOjE2NzUwMjU4NzJ9.KVU9VyGQEw2v3EFWEgHZGqb3qs_7wsToYZ-cmNwu0gU
+
+{
+   "content":"Hello!!",
+   "type":"text",
+   "roomId":2
+}
+
+###
+GET http://localhost:5151/api/room/find/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc0OTU4ODI2LCJleHAiOjE2NzUwMDIwMjZ9.gMccRBgxuKRuIRZ7ethViv46u4Ry9i0YQQS3Iey5pbk
+
+
+###
+GET http://localhost:5151/api/user/user-not-me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc0OTU4ODI2LCJleHAiOjE2NzUwMDIwMjZ9.gMccRBgxuKRuIRZ7ethViv46u4Ry9i0YQQS3Iey5pbk

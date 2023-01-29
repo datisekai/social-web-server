@@ -34,20 +34,7 @@ const db: any = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// db.users = import("./User.model");
-// db.species = import("./Species.model");
-// db.categories = import("./Category.model");
-// db.products = import("./Product.model");
-// db.skuValues = import("./SkuValues.model");
-// db.skus = import("./Sku.model");
-// db.attributes = import("./Attribute.model");
-// db.detailAttributes = import("./DetailAttribute.model");
-// db.permissions = import("./Permission.model");
-// db.actions = import("./Action.model");
-// db.detailActions = import("./DetailAction.model");
-// db.perActions = import("./Per_action.model");
-// db.perDetailAction = import("./Per_detail_action.model");
-// db.infos = import("./Info.model");
+db.users = import('./User.model')
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("SQL done query create table...");
