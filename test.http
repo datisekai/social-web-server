@@ -19,19 +19,19 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5151/api/user/register
+POST https://www.tailieuthi.site/api/user/register
 Content-Type: application/json
 
 {
-    "phone":"0886249021",
+    "phone":"0886249022",
     "password":"bedatdz",
-    "name":"An Nguyen"
+    "name":"Thanh Dat"
 }
 
 ###
 GET http://localhost:5151/api/room/user
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc0OTU4ODI2LCJleHAiOjE2NzUwMDIwMjZ9.gMccRBgxuKRuIRZ7ethViv46u4Ry9i0YQQS3Iey5pbk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc1MDU2OTkxLCJleHAiOjE2NzUxMDAxOTF9.aBEcOZzj7MbVwchg24Bfyb925nqiThIdnCOWk5w1ifE
 
 ###
 POST http://localhost:5151/api/room

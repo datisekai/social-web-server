@@ -1,7 +1,6 @@
 import { Op } from "sequelize";
 import Message from "../model/Message.model";
 import MessageReact from "../model/MessReact.model";
-import React from "../model/React.model";
 import Room from "../model/Room.model";
 import RoomMess from "../model/RoomMess.model";
 import RoomUser from "../model/RoomUser.model";
@@ -199,9 +198,9 @@ const RoomController = {
                 ],
               },
             ],
-            order:[['updatedAt','DESC']]
           },
         ],
+        order: [[Room, "updatedAt", "DESC"]],
       });
 
       return res.json(roomUsers.map((item: any) => item.room));
@@ -244,7 +243,7 @@ const RoomController = {
                   },
                   {
                     model: MessageReact,
-                    include: [User, React],
+                    
                   },
                 ],
               },

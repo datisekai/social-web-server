@@ -5,5 +5,7 @@ import isLogin from '../middleware/isLogin';
 const router = express.Router();
 
 router.post('/',isLogin, MessageController.addMessage);
+router.delete('/recall/:id',isLogin, MessageController.recallMessage)
+router.post('/react/:id',isLogin, MessageController.reactMessage);
 
 export default router;

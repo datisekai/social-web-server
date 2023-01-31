@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from ".";
-import React from "./React.model";
 import User from "./User.model";
 
 const MessageReact = sequelize.define("mess_react", {
@@ -18,12 +17,9 @@ const MessageReact = sequelize.define("mess_react", {
       key: "id",
     },
   },
-  reactId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "reacts",
-      key: "id",
-    },
+  react: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   createdAt: {
     type: DataTypes.DATE,
@@ -35,8 +31,8 @@ const MessageReact = sequelize.define("mess_react", {
   },
 });
 
+
 MessageReact.belongsTo(User)
-React.hasMany(MessageReact)
-MessageReact.belongsTo(React)
+User.hasMany(MessageReact)
 
 export default MessageReact;

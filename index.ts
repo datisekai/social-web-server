@@ -19,21 +19,22 @@ const io = require("socket.io")(server, {
   },
 });
 io.on("connection", (socket) => {
+  //User online
   socket.on("add-user-active", (user) => {
-    console.log("user", user);
-    if (!activeUsers.some((item) => item.id === user.id)) {
+    if (!activeUsers.some((item) => item.id === user?.id)) {
       activeUsers.push({ ...user, socketId: socket.id });
     }
-
     io.emit("get-user-active", activeUsers);
   });
 
+  //Hủy kết nối
   socket.on("disconnect", () => {
     activeUsers = activeUsers.filter((item) => item.socketId !== socket.id);
 
     io.emit("get-user-active", activeUsers);
   });
 
+  //Gửi tin nhắn chat 2 người
   socket.on("send-message-cr2", (data) => {
     const currentRecieve = activeUsers.find(
       (item) => item.id === data.receiveId
@@ -45,12 +46,47 @@ io.on("connection", (socket) => {
     }
   });
 
+  //Tạo nhóm chat 2 người
   socket.on("create-room-2", (data) => {
-    const currentReceive = activeUsers.find(item => item.id === data.receiveId);
-    if(currentReceive){
+    const currentReceive = activeUsers.find(
+      (item) => item.id === data.receiveId
+    );
+    if (currentReceive) {
       socket.to(currentReceive.socketId).emit("get-new-room-cr2", data.data);
     }
   });
+
+  // Thu hồi tin nhắn
+  socket.on(
+    "recall-message",
+    (data: { receiveId: number; messageId: number }) => {
+      const currentReceive = activeUsers.find(
+        (item) => item.id === data.receiveId
+      );
+      if (currentReceive) {
+        socket.to(currentReceive.socketId).emit("get-recall-message", data);
+      }
+    }
+  );
+
+  //Thả react tin nhán
+  socket.on(
+    "react-message",
+    (data: {
+      messageId: number | string;
+      userId: number;
+      react: string;
+      id: number | string;
+      receiveId: number;
+    }) => {
+      const currentReceive = activeUsers.find(
+        (item) => item.id === data.receiveId
+      );
+      if (currentReceive) {
+        socket.to(currentReceive.socketId).emit("get-react-message", data);
+      }
+    }
+  );
 });
 
 app.use(cors());

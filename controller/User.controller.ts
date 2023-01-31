@@ -1,9 +1,8 @@
+import jwt from "jsonwebtoken";
+import { Op } from "sequelize";
+import config from "../config";
 import User from "../model/User.model";
 import { genarateAvatar, showInternal, showMissing } from "../shares";
-import jwt from "jsonwebtoken";
-import config from "../config";
-import e from "express";
-import { Op } from "sequelize";
 
 const UserController = {
   register: async (req, res) => {
@@ -34,7 +33,7 @@ const UserController = {
           id: newUser.id,
           phone: newUser.phone,
         },
-        config.JWT_SECRET,
+        config.JWT_SECRET || "datisekai",
         {
           expiresIn: "12h",
         }
@@ -65,11 +64,12 @@ const UserController = {
             id: currentUser.id,
             phone: currentUser.phone,
           },
-          config.JWT_SECRET,
+          config.JWT_SECRET || "datisekai",
           {
             expiresIn: "12h",
           }
         );
+        console.log(token)
         return res.json({ token });
       }
 

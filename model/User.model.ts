@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from ".";
+import MessageReact from "./MessReact.model";
 import RoomUser from "./RoomUser.model";
 
 const User = sequelize.define("users", {
@@ -39,5 +40,6 @@ const User = sequelize.define("users", {
 
 User.hasMany(RoomUser)
 RoomUser.belongsTo(User)
+
 
 export default User;
