@@ -87,6 +87,16 @@ io.on("connection", (socket) => {
       }
     }
   );
+
+  socket.on("seen-message", (data: { receiveId: number, listMessage:number[] }) => {
+    const currentReceive = activeUsers.find(
+      (item) => item.id === data.receiveId
+    );
+    if (currentReceive) {
+      console.log("===============================Send to client seen mesage=============")
+      socket.to(currentReceive.socketId).emit("get-seen-message", data);
+    }
+  });
 });
 
 app.use(cors());

@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Message from "../model/Message.model";
 import MessageReact from "../model/MessReact.model";
 import Room from "../model/Room.model";
@@ -170,6 +171,52 @@ const MessageController = {
         react: newMessReact.react,
         id: newMessReact.id,
       });
+    } catch (error) {
+      return showInternal(res, error);
+    }
+  },
+  seenMessage: async (req, res) => {
+    try {
+      const roomId = req.params.id;
+      if (!roomId) {
+        return showMissing(res);
+      }
+
+      const currentRoomMess = await RoomMess.findAll({
+        where: {
+          userId: {
+            [Op.ne]: req.userId,
+          },
+          roomId,
+        },
+        include: [
+          {
+            model: Message,
+            where: {
+              isSeen: false,
+            },
+            attributes: [],
+          },
+        ],
+        attributes: ["messageId"],
+      });
+
+      const listMessageNotSeen = currentRoomMess.map(
+        (item: any) => item.messageId
+      );
+
+      await Message.update(
+        { isSeen: true },
+        {
+          where: {
+            id: {
+              [Op.in]: listMessageNotSeen,
+            },
+          },
+        }
+      );
+
+      return res.json(listMessageNotSeen);
     } catch (error) {
       return showInternal(res, error);
     }

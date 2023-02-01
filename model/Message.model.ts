@@ -22,7 +22,10 @@ const Message = sequelize.define("messages", {
   },
   type: {
     type: DataTypes.STRING,
-   
+  },
+  isSeen: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
   createdAt: {
     type: DataTypes.DATE,
@@ -34,13 +37,12 @@ const Message = sequelize.define("messages", {
   },
 });
 
-Message.hasOne(RoomMess)
-RoomMess.belongsTo(Message)
+Message.hasOne(RoomMess);
+RoomMess.belongsTo(Message);
 
-Message.hasMany(MessageReact)
-MessageReact.belongsTo(Message)
+Message.hasMany(MessageReact);
+MessageReact.belongsTo(Message);
 
-Message.belongsTo(User)
-
+Message.belongsTo(User);
 
 export default Message;

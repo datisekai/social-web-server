@@ -63,3 +63,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiO
 GET http://localhost:5151/api/user/user-not-me
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc0OTU4ODI2LCJleHAiOjE2NzUwMDIwMjZ9.gMccRBgxuKRuIRZ7ethViv46u4Ry9i0YQQS3Iey5pbk
+
+###
+GET http://localhost:5151/api/message/seen/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGhvbmUiOiIwODg2MjQ5MDIyIiwiaWF0IjoxNjc1MjQ3MDgyLCJleHAiOjE2NzUyOTAyODJ9.EYLWr4VJghHn6PPHElWTTcYAtLJe2QpiWtCEMSZvASQ
