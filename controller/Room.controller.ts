@@ -212,7 +212,7 @@ const RoomController = {
     try {
       const id = req.params.id;
 
-      const currentRoom = await Room.findOne({
+      const currentRoom:any = await Room.findOne({
         where: {
           id,
           status: true,
@@ -251,7 +251,14 @@ const RoomController = {
           },
         ],
       });
-      return res.json(currentRoom);
+
+      if(currentRoom.room_users.some(item => item.userId === req.userId)){
+
+        return res.json(currentRoom);
+      }
+
+      return res.status(401).json("Not authorized")
+
     } catch (error) {
       return showInternal(res, error);
     }
